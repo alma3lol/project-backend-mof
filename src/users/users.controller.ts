@@ -27,7 +27,6 @@ export class UsersController {
             throw new NotFoundException();
         })
     }
-
     // http://localhost:3000/users/search/:name
     @Get("search/:name")
     searchByName(@Param('name') name: string) {
