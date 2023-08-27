@@ -17,7 +17,7 @@ export class UsersController {
         })
     }
 
-    // http://localhost:3000/users/username/:id
+    // http://localhost:3000/users/username/:username
     @Get("username/:username")
     getByUsername(@Param('username') username: string) {
         return this.usersService.user.findFirst({ where: { username } }).then(user => {
