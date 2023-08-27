@@ -39,4 +39,16 @@ export class UsersController {
             throw new NotFoundException();
         })
     }
+
+    @Get()
+    getAllUsers() {
+        return this.usersService.user.findMany().then(users => {
+            return users.map(user => {
+                const { password, ...rest } = user;
+                return rest
+            })
+        }).catch(_err => {
+            throw new NotFoundException();
+        })
+    }
 }
