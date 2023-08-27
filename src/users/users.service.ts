@@ -7,3 +7,10 @@ export class UsersService extends PrismaClient implements OnModuleInit {
         await this.$connect();
     }
 }
+
+
+/*
+- Get by username
+- Get by id
+- Search by name
+*/
