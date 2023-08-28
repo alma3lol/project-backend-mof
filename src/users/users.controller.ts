@@ -27,10 +27,24 @@ export class UsersController {
             throw new NotFoundException();
         })
     }
+
     // http://localhost:3000/users/search/:name
     @Get("search/:name")
-    searchByName(@Param('name') name: string) {
-        return this.usersService.user.findMany({ where: { name: { contains: name } } }).then(users => {
+    searchByName(@Param('name') name1: string) {
+        return this.usersService.user.findMany({ where: { name: { contains: name1 } } }).then(users => {
+            return users.map(user => {
+                const { password, ...rest } = user;
+                return rest
+            })
+        }).catch(_err => {
+            throw new NotFoundException();
+        })
+    }
+
+    // http://localhost:3000/users/getAllUsers/all
+    @Get("getAllUsers/all")
+    getAllUsers() {
+        return this.usersService.user.findMany( { where: { id: { gte: 0 } } }).then(users => {
             return users.map(user => {
                 const { password, ...rest } = user;
                 return rest
