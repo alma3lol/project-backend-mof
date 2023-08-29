@@ -30,8 +30,8 @@ export class UsersController {
 
     // http://localhost:3000/users/search/:name
     @Get("search/:name")
-    searchByName(@Param('name') name1: string) {
-        return this.usersService.user.findMany({ where: { name: { contains: name1 } } }).then(users => {
+    searchByName(@Param('name') name: string) {
+        return this.usersService.user.findMany({ where: { name: { contains: name } } }).then(users => {
             return users.map(user => {
                 const { password, ...rest } = user;
                 return rest
@@ -41,10 +41,10 @@ export class UsersController {
         })
     }
 
-    // http://localhost:3000/users/getAllUsers/all
-    @Get("getAllUsers/all")
+    // http://localhost:3000/users
+    @Get()
     getAllUsers() {
-        return this.usersService.user.findMany( { where: { id: { gte: 0 } } }).then(users => {
+        return this.usersService.user.findMany({ where: { id: { gte: 0 } } }).then(users => {
             return users.map(user => {
                 const { password, ...rest } = user;
                 return rest
