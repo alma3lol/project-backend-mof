@@ -27,6 +27,7 @@ export class UsersController {
             throw new NotFoundException();
         })
     }
+
     // http://localhost:3000/users/search/:name
     @Get("search/:name")
     searchByName(@Param('name') name: string) {
@@ -40,16 +41,16 @@ export class UsersController {
         })
     }
 
+    // http://localhost:3000/users
     @Get()
-    getAllUsers( ) {
-        
+    getAllUsers() {
         return this.usersService.user.findMany().then(users => {
-        return users.map(user => {
-            const { password, ...rest } = user;
-            return rest
+            return users.map(user => {
+                const { password, ...rest } = user;
+                return rest
+            })
+        }).catch(_err => {
+            throw new NotFoundException();
         })
-    }).catch(_err => {
-        throw new NotFoundException();
-    })
     }
 }

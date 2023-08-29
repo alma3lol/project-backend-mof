@@ -15,13 +15,6 @@ export class AppController {
     return 'Hello World!';
   }
 
-  // http://127.0.0.1:3000/hello
-  @Public()
-  @Get('/hello')
-  getHelloUrl(): string {
-    return this.appService.getHello();
-  }
-
   // http://127.0.0.1:3000/user
   @Public()
   @Post('/user')
