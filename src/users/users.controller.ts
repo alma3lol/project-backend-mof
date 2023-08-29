@@ -44,7 +44,7 @@ export class UsersController {
     // http://localhost:3000/users
     @Get()
     getAllUsers() {
-        return this.usersService.user.findMany({ where: { id: { gte: 0 } } }).then(users => {
+        return this.usersService.user.findMany().then(users => {
             return users.map(user => {
                 const { password, ...rest } = user;
                 return rest
